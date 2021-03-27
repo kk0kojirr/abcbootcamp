@@ -1,3 +1,3 @@
 find . -type d -name target | xargs rm -rf
 
-NUM="157b" && mkdir ../abc$NUM && cd ../abc$NUM && cargo init --vcs none && cargo run | code Cargo.toml | code ./src/main.rs
+NUM="157b" && mkdir ../abc$NUM && cd ../abc$NUM && cargo init --vcs none && cargo run && code Cargo.toml && code ./src/main.rs
