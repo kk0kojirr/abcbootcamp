@@ -5,22 +5,18 @@ fn main() {
         a: [u32; n],
     }
     let mut ans: u32 = std::u32::MAX;
-    for sep in 1..a.len() {
-        let mut cur: u32 = 0;
-
-        let mut aaor: u32 = a[0]; 
-        for aa in 1..sep {
-            aaor = aaor | a[aa];
+    for i in 0..(1 << (n - 1)) {
+        let mut or = 0;
+        let mut xor = 0;
+        for (j, a) in a.iter().enumerate() {
+            or = or | a;
+            if i >> j & 1 == 0 {
+                xor = xor ^ or;
+                or = 0;
+            }
         }
-        // ------
-        let mut abor: u32 = a[sep];
-        for ab in sep+1..a.len() {
-            abor = abor | a[ab];
-        }
-
-        cur = aaor ^ abor;
-        ans = std::cmp::min(ans, cur);
+        xor = xor ^ or;
+        ans = std::cmp::min(ans, xor);
     }
-
     println!("{}", ans);
 }
