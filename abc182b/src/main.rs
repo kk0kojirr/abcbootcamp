@@ -5,15 +5,18 @@ fn main() {
         a: [u32; n],
     }
     let mut max = 0;
-    let mut res = -1;
+    let mut res = 0;
     for i in 2..=1000 {
         let mut cnt = 0;
-        for j in 0..n {
+        for num in &a {
+            if num % i == 0 {
+                cnt += 1;
+            }
             if max < cnt {
                 max = cnt;
                 res = i;
             }
         }
     }
-    println!("{}", ans);
+    println!("{}", res);
 }

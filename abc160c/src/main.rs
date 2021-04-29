@@ -1,15 +1,23 @@
 use proconio::input;
 fn main() {
     input! {
-        k: i32,
-        n: u32,
-        mut a: [i32; n]
+        k: u32,
+        n: usize,
+        mut a: [u32; n]
     }
-    let mut prev: i32 = 0;
-    let mut max: i32 = 0;
-    for w in a.windows(2) {
-        max = std::cmp::max(prev, w[1] - w[0]);
-        prev = w[1] - w[0];
+    let mut kukan = vec![0; n];
+    let mut i = 0;
+    for p in a.windows(2) {
+        kukan[i] = p[1] - p[0];
+        i += 1;
     }
-    println!("{}", k - max);
+    kukan[n-1] = k-a[n-1] + a[0];
+
+    let mut ans = 0;
+    let mut max: u32 = 0;
+    for ku in kukan {
+        ans += ku;
+        max = std::cmp::max(max, ku);
+    }
+    println!("{}", ans - max);
 }
