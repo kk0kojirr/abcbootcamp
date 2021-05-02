@@ -6,13 +6,19 @@ fn main() {
     }
     d.sort();
     let mut arc = vec![false; n];
-    let k = d[n/2];
+    let k = d[n/2-1];
+    let kp = d[n/2];
+    let diff = kp - k;
     for (i, &dd) in d.iter().enumerate() {
-        if dd >= k {
+        if dd >= kp {
             arc[i] = true;
         } else {
             arc[i] = false;
         }
     }
-    println!("{:?},{:?}||{} {}", arc, d, k, arc.iter().filter(|&x| *x).count());
+    if arc.iter().filter(|&x| *x).count() == n/2 {
+        println!("{}", diff);
+    } else {
+        println!("0");
+    }
 }
