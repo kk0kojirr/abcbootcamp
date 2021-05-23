@@ -1,15 +1,20 @@
 use proconio::input;
-use proconio::marker::Chars;
+use std::collections::HashSet;
 fn main() {
     input! {
         n: usize,
-        s: [Chars; n],
+        s: [String; n],
     }
-    for i in 0..=n {
-        for j in 0..=n {
-            
+    let mut hs = HashSet::new();
+    for ss in s.iter() {
+        hs.insert(ss);
+    }
+    for ss in s.iter() {
+        let key = format!("!{}", ss);
+        if hs.contains(&key) {
+            println!("{}", ss);
+            return;
         }
     }
-
-    println!("{}", n);
+    println!("satisfiable");
 }
